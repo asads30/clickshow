@@ -22,11 +22,12 @@
             </div>
           </div>
         </div>
-        <div class="center">
-          <div class="sum" v-if="amount">{{ amount }}</div>
+        <div class="center" v-if="amount">
+          <div class="sum" v-if="amount > 0">{{ formattedNumber }}</div>
           <div class="sum" v-else>bankrot</div>
-          <div class="som" v-if="amount">so'm</div>
+          <div class="som" v-if="amount > 0">so'm</div>
         </div>
+        <div class="loader" v-else></div>
         <div class="bottom">
           <div class="bottom1">
             <div class="list">
@@ -49,15 +50,30 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'HomeView',
   data() {
     return {
-      amount: '100 000 000'
+      amount: null
     }
   },
   mounted() {
-    setinte
+    this.getBalance()
+    setInterval(this.getBalance, 5000);
+  },
+  computed: {
+    formattedNumber() {
+      return this.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    },
+  },
+  methods: {
+    getBalance(){
+      axios.get('https://charity.click.uz/api/click_show/get_balance').then(res => {
+        this.amount = res.data.balance
+      })
+    }
   },
 }
 </script>
@@ -167,4 +183,24 @@ export default {
     }
   }
 }
+.number {
+  font-size: 24px; /* Размер шрифта */
+}
+.number-enter-active, .number-leave-active {
+  transition: all 0.5s; /* Длительность анимации */
+}
+.number-enter, .number-leave-to {
+  opacity: 0; /* Начальное состояние исчезновения */
+  transform: translateY(-20px); /* Начальное состояние движения */
+}
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid;
+  border-color: #fff #fff;
+  animation: l1 1s infinite;
+  margin: 0 auto;
+}
+@keyframes l1 {to{transform: rotate(.5turn)}}
 </style>
