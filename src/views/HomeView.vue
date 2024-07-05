@@ -23,8 +23,9 @@
           </div>
         </div>
         <div class="center">
-          <div class="sum">100 000 000</div>
-          <div class="som">so'm</div>
+          <div class="sum" v-if="amount">{{ amount }}</div>
+          <div class="sum" v-else>bankrot</div>
+          <div class="som" v-if="amount">so'm</div>
         </div>
         <div class="bottom">
           <div class="bottom1">
@@ -49,7 +50,15 @@
 
 <script>
 export default {
-  name: 'HomeView'
+  name: 'HomeView',
+  data() {
+    return {
+      amount: '100 000 000'
+    }
+  },
+  mounted() {
+    setinte
+  },
 }
 </script>
 
@@ -107,6 +116,7 @@ export default {
       color: #B3FFB1;
       font-size: 258.67px;
       font-weight: 700;
+      text-transform: uppercase
     }
     .som{
       position: absolute;
@@ -114,6 +124,46 @@ export default {
       color: #fff;
       right: 80px;
       bottom: -50px;
+    }
+  }
+}
+@media screen and (max-width: 1700px) {
+  .container{
+    max-width: 1200px !important;
+  }
+  .home{
+    &__box{
+      padding: 20px 0;
+      height: calc(100vh - 40px);
+    }
+    .top1{
+      gap: 40px;
+      margin-bottom: 20px;
+    }
+    .list{
+      gap: 20px;
+    }
+    .item{
+      height: 60px;
+      line-height: 60px;
+      padding: 0 15px;
+      font-size: 40px;
+    }
+    .bottom{
+      gap: 20px;
+    }
+    .bottom1{
+      padding-left: 20px;
+    }
+    .center{
+      .sum{
+        font-size: 180px;
+      }
+      .som{
+        font-size: 70px;
+        right: 80px;
+        bottom: -50px;
+      }
     }
   }
 }
