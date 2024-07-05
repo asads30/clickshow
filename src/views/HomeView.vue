@@ -61,7 +61,7 @@ export default {
   },
   mounted() {
     this.getBalance()
-    setInterval(this.getBalance, 5000);
+    setInterval(this.getBalance, 1000);
   },
   computed: {
     formattedNumber() {
