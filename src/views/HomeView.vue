@@ -24,7 +24,7 @@
         </div>
         <div class="center" v-if="amount">
           <div class="sum" v-if="amount > 0">{{ formattedNumber }}</div>
-          <div class="sum" v-else>bankrot</div>
+          <div class="sum bankrot" v-else>bankrot</div>
           <div class="som" v-if="amount > 0">so'm</div>
         </div>
         <div class="loader" v-else></div>
@@ -129,10 +129,13 @@ export default {
     text-align: center;
     position: relative;
     .sum{
-      color: #B3FFB1;
+      color: #fff;
       font-size: 258.67px;
       font-weight: 700;
       text-transform: uppercase
+    }
+    .sum.bankrot{
+      color: #FF78A1;
     }
     .som{
       position: absolute;
