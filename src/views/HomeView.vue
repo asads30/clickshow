@@ -135,7 +135,7 @@ export default {
       text-transform: uppercase
     }
     .sum.bankrot{
-      color: #FF78A1;
+      color: #ff0000;
     }
     .som{
       position: absolute;
